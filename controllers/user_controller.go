@@ -86,7 +86,7 @@ func GetUser(c *gin.Context) {
 	c.JSON(http.StatusOK, response.UserResponse{
 		Status:  http.StatusOK,
 		Message: "success",
-		Data: response.UserResponseData{
+		Data: &response.UserResponseData{
 			User: responseUser,
 		},
 	})
@@ -157,7 +157,7 @@ func EditUser(c *gin.Context) {
 	c.JSON(http.StatusOK, response.UserResponse{
 		Status:  http.StatusOK,
 		Message: "success",
-		Data: response.UserResponseData{
+		Data: &response.UserResponseData{
 			User: updatedUser,
 		},
 	})
@@ -230,8 +230,11 @@ func GetAllUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK,
-		response.UserResponse{Status: http.StatusOK, Message: "success", Data: response.UserResponseData{
-			User: users,
-		}},
+		response.UserResponse{
+			Status:  http.StatusOK,
+			Message: "success",
+			Data: &response.UserResponseData{
+				User: users,
+			}},
 	)
 }
